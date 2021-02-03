@@ -47,6 +47,7 @@ const renderActiveNote = () => {
     $noteTitle.val("");
     $noteText.val("");
   }
+
 };
 
 // Get the note data from the inputs, save it to the db and update the view
@@ -55,8 +56,7 @@ const handleNoteSave = function () {
     title: $noteTitle.val(),
     text: $noteText.val(),
   };
-  alert("i am here");
-console.log(newNote);
+
   saveNote(newNote).then(() => {
     getAndRenderNotes();
     renderActiveNote();
@@ -106,6 +106,9 @@ const handleRenderSaveBtn = function () {
 const renderNoteList = (notes) => {
   $noteList.empty();
 
+  //console.log("reloading4");
+  //console.log(notes);
+
   const noteListItems = [];
 
   // Returns jquery object for li with given text and delete button
@@ -134,10 +137,13 @@ const renderNoteList = (notes) => {
   });
 
   $noteList.append(noteListItems);
+
+   //window.location.reload();
 };
 
 // Gets notes from the db and renders them to the sidebar
 const getAndRenderNotes = () => {
+  
   return getNotes().then(renderNoteList);
 };
 
