@@ -1,7 +1,6 @@
 var express = require("express");
 var path = require("path");
 var fs = require("fs");
-var database = require("./db/db.json");
 
 var app = express();
 var PORT = process.env.PORT || 4000;
@@ -39,8 +38,6 @@ app.get("/api/notes", function(req, res){
             return res.json(dbNotes);
         }
     });
-
-    
 });
 
 app.post("/api/notes", function(req, res){
@@ -89,12 +86,11 @@ app.delete("/api/notes/:id", function(req,res){
             fs.writeFile("./db/db.json",json,"utf8",function(err){
                 if(err) throw err;
                 console.log("saved");
-                res.send("message sent");
             });
         }
 
     });
-
+    res.send("message sent");
 
 });
 
